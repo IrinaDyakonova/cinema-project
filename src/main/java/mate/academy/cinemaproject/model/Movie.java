@@ -11,9 +11,9 @@ import javax.persistence.Table;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String title;
-    String description;
+    private Long id;
+    private String title;
+    private String description;
 
     public Movie() {
     }
