@@ -14,7 +14,7 @@ import org.hibernate.query.Query;
 
 @Dao
 public class MovieSessionDaoImpl implements MovieSessionDao {
-    private static final Logger LOGGER = Logger.getLogger(MovieDaoImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(MovieSessionDaoImpl.class);
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
@@ -49,7 +49,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert movieSession entity", e);
+            throw new DataProcessingException("Can't insert movieSession entity", e);
         } finally {
             if (session != null) {
                 session.close();

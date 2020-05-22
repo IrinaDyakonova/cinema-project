@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 
 @Dao
 public class CinemaHallDaoImpl implements CinemaHallDao {
-    private static final Logger LOGGER = Logger.getLogger(MovieDaoImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(CinemaHallDaoImpl.class);
 
     @Override
     public CinemaHall add(CinemaHall cinemaHall) {
@@ -25,13 +25,14 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
             Long cinemaHallId = (Long) session.save(cinemaHall);
             transaction.commit();
             cinemaHall.setId(cinemaHallId);
-            LOGGER.info("cinemaHall insert");
+            LOGGER.info("cinemaHall "+cinemaHall.getId()
+                    + " " + cinemaHall.getDescription() + " insert");
             return cinemaHall;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert cinemaHall entity", e);
+            throw new DataProcessingException("Can't insert cinemaHall entity", e);
         } finally {
             if (session != null) {
                 session.close();
