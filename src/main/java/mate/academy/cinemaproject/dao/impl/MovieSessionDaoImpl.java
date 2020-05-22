@@ -29,7 +29,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             query.setParameter("day", date.getDayOfMonth());
             return query.list();
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get available sessions", e);
+            throw new DataProcessingException("Can't get available movieSession", e);
         }
     }
 
@@ -43,7 +43,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             Long movieSessionId = (Long) session.save(movieSession);
             transaction.commit();
             movieSession.setId(movieSessionId);
-            LOGGER.info("movieSession insert");
+            LOGGER.info("movieSession " + movieSession.toString() + "insert");
             return movieSession;
         } catch (Exception e) {
             if (transaction != null) {

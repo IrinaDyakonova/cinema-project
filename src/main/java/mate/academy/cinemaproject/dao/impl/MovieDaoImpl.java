@@ -25,7 +25,7 @@ public class MovieDaoImpl implements MovieDao {
             Long movieId = (Long) session.save(movie);
             transaction.commit();
             movie.setId(movieId);
-            LOGGER.info("Movie insert");
+            LOGGER.info("Movie " + movie.toString() + " insert");
             return movie;
         } catch (Exception e) {
             if (transaction != null) {
