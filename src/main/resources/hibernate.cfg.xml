@@ -8,9 +8,13 @@
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.username">irina</property>
         <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.jdbc.time_zone">Europe/Kiev</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
         <mapping class="mate.academy.cinemaproject.model.Movie" />
+        <mapping class="mate.academy.cinemaproject.model.CinemaHall" />
+        <mapping class="mate.academy.cinemaproject.model.MovieSession" />
+
     </session-factory>
 </hibernate-configuration>
