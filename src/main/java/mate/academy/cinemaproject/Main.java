@@ -13,9 +13,6 @@ import mate.academy.cinemaproject.service.CinemaHallService;
 import mate.academy.cinemaproject.service.MovieService;
 import mate.academy.cinemaproject.service.MovieSessionService;
 import mate.academy.cinemaproject.service.UserService;
-import mate.academy.cinemaproject.service.CinemaHallService;
-import mate.academy.cinemaproject.service.MovieService;
-import mate.academy.cinemaproject.service.MovieSessionService;
 
 public class Main {
     private static Injector injector = Injector.getInstance("mate.academy.cinemaproject");
@@ -41,7 +38,6 @@ public class Main {
                 + "where and why she went, and return her home.");
         movieService.add(movie1);
 
-
         Movie movie2 = new Movie();
         movie2.setTitle("Just a Gigolo");
         movie2.setDescription("Aging Zhigot Alex, accustomed to living "
@@ -61,24 +57,6 @@ public class Main {
                 + "harassment and discrimination.");
         movieService.add(movie3);
 
-        Movie movie2 = new Movie();
-        movie2.setTitle("Just a Gigolo");
-        movie2.setDescription("Aging Zhigot Alex, accustomed to living "
-                + "at the expense of a rich girlfriend, was sent "
-                + "to a forced pension. He settles with his sister "
-                + "and nephew, but does not abandon attempts to find "
-                + "a new patroness");
-        movieService.add(movie2);
-
-        Movie movie3 = new Movie();
-        movie3.setTitle("Bombshell");
-        movie3.setDescription("A drama based on personal stories "
-                + "of Fox News television journalists who were "
-                + "sexually harassed at work and sued company "
-                + "founder Roger Isles. Their struggle marked "
-                + "the beginning of a massive campaign against "
-                + "harassment and discrimination.");
-        movieService.add(movie3);
         movieService.getAll().forEach(System.out::println);
 
         CinemaHall cinemaHall1 = new CinemaHall();
