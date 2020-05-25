@@ -5,7 +5,6 @@ import mate.academy.cinemaproject.dao.UserDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
 import mate.academy.cinemaproject.lib.Dao;
 import mate.academy.cinemaproject.model.User;
-import mate.academy.cinemaproject.util.HashUtil;
 import mate.academy.cinemaproject.util.HibernateUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
