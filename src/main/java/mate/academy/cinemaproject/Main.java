@@ -2,13 +2,17 @@ package mate.academy.cinemaproject;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import mate.academy.cinemaproject.exeption.AuthenticationException;
 import mate.academy.cinemaproject.lib.Injector;
 import mate.academy.cinemaproject.model.CinemaHall;
 import mate.academy.cinemaproject.model.Movie;
 import mate.academy.cinemaproject.model.MovieSession;
+import mate.academy.cinemaproject.model.User;
+import mate.academy.cinemaproject.service.AuthenticationService;
 import mate.academy.cinemaproject.service.CinemaHallService;
 import mate.academy.cinemaproject.service.MovieService;
 import mate.academy.cinemaproject.service.MovieSessionService;
+import mate.academy.cinemaproject.service.UserService;
 
 public class Main {
     private static Injector injector = Injector.getInstance("mate.academy.cinemaproject");
@@ -18,8 +22,12 @@ public class Main {
             = (MovieSessionService) injector.getInstance(MovieSessionService.class);
     private static CinemaHallService cinemaHallService
             = (CinemaHallService) injector.getInstance(CinemaHallService.class);
+    private static UserService userService
+            = (UserService) injector.getInstance(UserService.class);
+    private static AuthenticationService authenticationService
+            = (AuthenticationService) injector.getInstance(AuthenticationService.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AuthenticationException {
 
         Movie movie1 = new Movie();
         movie1.setTitle("Where'd You Go, Bernadette");
@@ -84,5 +92,8 @@ public class Main {
         movieSessionService.findAvailableSessions(movie3.getId(), today)
                 .forEach(System.out::println);
 
+        User irinkoPavlinko = authenticationService.register("irinko_pavlinko", "3344410782");
+        authenticationService.login("irinko_pavlinko", "3344410782");
+        System.out.println(userService.findByEmail("irinko_pavlinko").get());
     }
 }
