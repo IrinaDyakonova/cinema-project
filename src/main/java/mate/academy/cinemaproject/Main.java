@@ -56,7 +56,6 @@ public class Main {
                 + "the beginning of a massive campaign against "
                 + "harassment and discrimination.");
         movieService.add(movie3);
-
         movieService.getAll().forEach(System.out::println);
 
         CinemaHall cinemaHall1 = new CinemaHall();
