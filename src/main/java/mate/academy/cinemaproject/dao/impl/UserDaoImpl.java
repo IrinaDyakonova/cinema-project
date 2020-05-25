@@ -23,8 +23,6 @@ public class UserDaoImpl implements UserDao {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            user.setSalt(HashUtil.getSalt());
-            user.setPassword(HashUtil.hashPassword(user.getPassword(), user.getSalt()));
             session.save(user);
             transaction.commit();
             LOGGER.info("User " + user.toString() + " insert");
