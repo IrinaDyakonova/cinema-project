@@ -47,7 +47,7 @@ public class UserDaoImpl implements UserDao {
             Query<User> query = session.createQuery(
                     "From User where email = :email");
             query.setParameter("email", email);
-            return Optional.ofNullable(query.getSingleResult());
+            return Optional.ofNullable(query.uniqueResult());
         } catch (Exception e) {
             throw new DataProcessingException("Can't get available user", e);
         }
