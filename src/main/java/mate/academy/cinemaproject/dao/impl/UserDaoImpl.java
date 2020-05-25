@@ -1,36 +1,36 @@
 package mate.academy.cinemaproject.dao.impl;
 
-import java.util.List;
-import javax.persistence.criteria.CriteriaQuery;
-import mate.academy.cinemaproject.dao.MovieDao;
+import java.util.Optional;
+import mate.academy.cinemaproject.dao.UserDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
 import mate.academy.cinemaproject.lib.Dao;
-import mate.academy.cinemaproject.model.Movie;
+import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.util.HibernateUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 @Dao
-public class MovieDaoImpl implements MovieDao {
-    private static final Logger LOGGER = Logger.getLogger(MovieDaoImpl.class);
+public class UserDaoImpl implements UserDao {
+    private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 
     @Override
-    public Movie add(Movie movie) {
+    public User add(User user) {
         Transaction transaction = null;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            session.save(movie);
+            session.save(user);
             transaction.commit();
-            LOGGER.info("Movie " + movie.toString() + " insert");
-            return movie;
+            LOGGER.info("User " + user.toString() + " insert");
+            return user;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't insert Movie entity", e);
+            throw new DataProcessingException("Can't insert User entity", e);
         } finally {
             if (session != null) {
                 session.close();
@@ -39,14 +39,14 @@ public class MovieDaoImpl implements MovieDao {
     }
 
     @Override
-    public List<Movie> getAll() {
+    public Optional<User> findByEmail(String email) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            CriteriaQuery<Movie> criteriaQuery = session
-                    .getCriteriaBuilder().createQuery(Movie.class);
-            criteriaQuery.from(Movie.class);
-            return session.createQuery(criteriaQuery).getResultList();
+            Query<User> query = session.createQuery(
+                    "From User where email = :email");
+            query.setParameter("email", email);
+            return Optional.ofNullable(query.uniqueResult());
         } catch (Exception e) {
-            throw new DataProcessingException("Error retrieving all movies ", e);
+            throw new DataProcessingException("Can't get available user", e);
         }
     }
 }
