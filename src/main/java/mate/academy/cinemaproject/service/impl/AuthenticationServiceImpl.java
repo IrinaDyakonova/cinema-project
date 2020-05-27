@@ -5,6 +5,7 @@ import mate.academy.cinemaproject.lib.Inject;
 import mate.academy.cinemaproject.lib.Service;
 import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.AuthenticationService;
+import mate.academy.cinemaproject.service.ShoppingCartService;
 import mate.academy.cinemaproject.service.UserService;
 import mate.academy.cinemaproject.util.HashUtil;
 
@@ -12,6 +13,9 @@ import mate.academy.cinemaproject.util.HashUtil;
 public class AuthenticationServiceImpl implements AuthenticationService {
     @Inject
     UserService userService;
+
+    @Inject
+    ShoppingCartService shoppingCartService;
 
     @Override
     public User login(String email, String password) throws AuthenticationException {
@@ -30,6 +34,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User(email, password);
         user.setSalt(HashUtil.getSalt());
         user.setPassword(HashUtil.hashPassword(user.getPassword(), user.getSalt()));
-        return userService.add(user);
+        User userDB = userService.add(user);
+        shoppingCartService.registerNewShoppingCart(userDB);
+        return userDB;
     }
 }

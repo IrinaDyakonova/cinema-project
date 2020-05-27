@@ -12,6 +12,7 @@ import mate.academy.cinemaproject.service.AuthenticationService;
 import mate.academy.cinemaproject.service.CinemaHallService;
 import mate.academy.cinemaproject.service.MovieService;
 import mate.academy.cinemaproject.service.MovieSessionService;
+import mate.academy.cinemaproject.service.ShoppingCartService;
 import mate.academy.cinemaproject.service.UserService;
 
 public class Main {
@@ -26,6 +27,8 @@ public class Main {
             = (UserService) injector.getInstance(UserService.class);
     private static AuthenticationService authenticationService
             = (AuthenticationService) injector.getInstance(AuthenticationService.class);
+    private static ShoppingCartService shoppingCartService
+            = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
     public static void main(String[] args) throws AuthenticationException {
 
@@ -94,7 +97,12 @@ public class Main {
 
         User irinkoPavlinko = authenticationService.register("irinko_pavlinko", "3344410782");
         authenticationService.login("irinko_pavlinko", "3344410782");
-        authenticationService.login("irinko_pavlinko123", "3344410782");
         System.out.println(userService.findByEmail("irinko_pavlinko").get());
+
+        System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
+
+        shoppingCartService.addSession(movie1Session, irinkoPavlinko);
+
+        System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
     }
 }
