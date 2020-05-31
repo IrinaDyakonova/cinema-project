@@ -105,6 +105,7 @@ public class Main {
         System.out.println(userService.findByEmail("irinko_pavlinko").get());
 
         System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
+        System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
 
         shoppingCartService.addSession(movie1Session, irinkoPavlinko);
         ShoppingCart shoppingCart = shoppingCartService.getByUser(irinkoPavlinko);
