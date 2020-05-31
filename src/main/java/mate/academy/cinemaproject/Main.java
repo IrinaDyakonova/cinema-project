@@ -103,6 +103,8 @@ public class Main {
         User irinkoPavlinko = authenticationService.register("irinko_pavlinko", "3344410782");
         authenticationService.login("irinko_pavlinko", "3344410782");
         System.out.println(userService.findByEmail("irinko_pavlinko").get());
+        System.out.println(userService.findByEmail("irinko_pavlinko1").get());
+
 
         System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
 
