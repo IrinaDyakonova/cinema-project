@@ -1,8 +1,17 @@
 language: java
+dist: xenial
 jdk:
   - openjdk11
+addons:
+  sonarcloud:
+    organization: irinadyakonova
+    token:
+      secure: "iAZNq0fmHna6pqk00HNASCuzjZdoTBaHCsd7df+90GrX77MDSnd1jJRlDChYw4IBo5kjfy6iJmFS/K+6Mx2fD/A0DGXQxi+M9Z8vB2tBOHT06n9IcOObhDs3HyVlol0OYbHW7DEta9a803ND/Axxg4wd47k9p7McGSWkkT75n/LYs
+      PJUMYus5Mlwc+vuAZB3hT6P1PGNH7k29F28RNnxouJopHyXzFUi7vVvTmEczciVC9xfTSYqnDNB9BCPzjE5OuLyARyZBbtREWrb1Byc9QSPNNagrb3jgfQSfrJsArbkD8e86s6sPHZ3i7CkmcdcwVF+MeUdcy+o/V2UHd7gL4gZ4CDvFt4/PIXqD
+      +8/b5960t+fJJFgZO5NQg1rrSFnqZmON1xNB389TNPcK6sch0pluW8n7E/PufevVAwnVHzpUoxnuQzURW6E0MSekhuii6HaLa/rfTzcmB7/mYM3z7s+Fse7BpIf9Qk+0prigDW66TaAXwEaa/pUlkiGXE8rwseT3oThgYSuqmxTcn25y3irPuiUr
+      MYi8rDTy40k8orXBwQFPS7r+3aPZ+Z4t+WykWLrlFvOUse30OR5r0t+iza7of5XFYq4itvB0A/LDB/ZJN6lUc8hPVQdXshCC8+ftYrMgtjnvzgkmyqoh6WKPFFNeFSn87vAlwSaKaRs0r4="
 script:
-  - mvn clean install
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=IrinaDyakonova_cinema-project
 cache:
   directories:
     - $HOME/.m2

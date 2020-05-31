@@ -7,11 +7,14 @@ import mate.academy.cinemaproject.lib.Injector;
 import mate.academy.cinemaproject.model.CinemaHall;
 import mate.academy.cinemaproject.model.Movie;
 import mate.academy.cinemaproject.model.MovieSession;
+import mate.academy.cinemaproject.model.Order;
+import mate.academy.cinemaproject.model.ShoppingCart;
 import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.AuthenticationService;
 import mate.academy.cinemaproject.service.CinemaHallService;
 import mate.academy.cinemaproject.service.MovieService;
 import mate.academy.cinemaproject.service.MovieSessionService;
+import mate.academy.cinemaproject.service.OrderService;
 import mate.academy.cinemaproject.service.ShoppingCartService;
 import mate.academy.cinemaproject.service.UserService;
 
@@ -29,6 +32,8 @@ public class Main {
             = (AuthenticationService) injector.getInstance(AuthenticationService.class);
     private static ShoppingCartService shoppingCartService
             = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+    private static OrderService orderService
+            = (OrderService) injector.getInstance(OrderService.class);
 
     public static void main(String[] args) throws AuthenticationException {
 
@@ -100,8 +105,16 @@ public class Main {
         System.out.println(userService.findByEmail("irinko_pavlinko").get());
 
         System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
+        System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
 
         shoppingCartService.addSession(movie1Session, irinkoPavlinko);
+        ShoppingCart shoppingCart = shoppingCartService.getByUser(irinkoPavlinko);
+
+        System.out.println(shoppingCart);
+
+        Order order = orderService.completeOrder(shoppingCart.getTickets(), shoppingCart.getUser());
+
+        System.out.println(order);
 
         System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
     }
