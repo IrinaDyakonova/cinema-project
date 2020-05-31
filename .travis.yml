@@ -1,8 +1,17 @@
 language: java
 jdk:
   - openjdk11
-script:
-  - mvn clean install
 cache:
   directories:
     - $HOME/.m2
+addons:
+  sonarcloud:
+    organization: "irinadyakonova"
+    token:
+  secure: "delYqCJuBnrEODgIaWlNZYcXZyMefzLO6/y+ZfCPb+g0J1vDtc2V/dp2R+NLadUryaeuRLEkQzmu5PhCcXheFRv5kGgsAfF5gdz+NyxrnfuNUBPP2BNd7q3x6LvWA440AmBUgF76DzAm6B4B0BTm0cR7nyMjYQAEAiry0KBOJPlM2
+4B66bBF7ZL7dQQoPQ3KX1dUq6GFCsstLYdAtqfmdf/esdXNwv5Z0ywUtRU/8kDzPw6D51OKpXRYHJJcS9alirzSfi5j6la794m0tEP2xmDUZI6y2bKtf3MaInZHeSiRf5d4G7VdLV0fQep3g3pLwlGLERpD6eYIchLY7618lMxqrpgGJkjjg5EZl
+bO4f6iP151xVmw71VyNUZhAkd5SH2+Nb18/vb2s4whn+SNuYezZQ6tBCiy8rcRJfXTpM6P29jIOF6pw3gM8DhKLTtXvwMn2ltfwPPfMkExF34/rLYbjG6c0J4wBWeTsyRde8vHmicouaNODWND1GJzXBeScahmmyXCE1IGJ976tq5sjqOKHUmDUS
+PIyX0yE17+KTGZXaqmykvYR4StKcfkc3zucQMsGHDfGbQlIcPui9Mlw4AIGfJDfPdXigaF0w9bs75+IlomRWC/kEFgFMU1FU62vrY5JDw7Bo8+cb5P08yyMZzBo/w5T9ayzH+8sx9IYNYk="
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=IrinaDyakonova_cinema-project
