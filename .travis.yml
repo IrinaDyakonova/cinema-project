@@ -1,9 +1,10 @@
 language: java
+dist: xenial
 jdk:
   - openjdk11
 addons:
   sonarcloud:
-    organization: "irinadyakonova"
+    organization: irinadyakonova
     token:
       secure: "delYqCJuBnrEODgIaWlNZYcXZyMefzLO6/y+ZfCPb+g0J1vDtc2V/dp2R+NLadUryaeuRLEkQzmu5PhCcXheFRv5kGgsAfF5gdz+NyxrnfuNUBPP2BNd7q3x6LvWA440AmBUgF76DzAm6B4B0BTm0cR7nyMjYQAEAiry0KBOJPlM2
 4B66bBF7ZL7dQQoPQ3KX1dUq6GFCsstLYdAtqfmdf/esdXNwv5Z0ywUtRU/8kDzPw6D51OKpXRYHJJcS9alirzSfi5j6la794m0tEP2xmDUZI6y2bKtf3MaInZHeSiRf5d4G7VdLV0fQep3g3pLwlGLERpD6eYIchLY7618lMxqrpgGJkjjg5EZl
