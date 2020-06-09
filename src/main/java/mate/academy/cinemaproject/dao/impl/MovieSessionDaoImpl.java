@@ -4,21 +4,27 @@ import java.time.LocalDate;
 import java.util.List;
 import mate.academy.cinemaproject.dao.MovieSessionDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
-import mate.academy.cinemaproject.lib.Dao;
 import mate.academy.cinemaproject.model.MovieSession;
-import mate.academy.cinemaproject.util.HibernateUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class MovieSessionDaoImpl implements MovieSessionDao {
     private static final Logger LOGGER = Logger.getLogger(MovieSessionDaoImpl.class);
 
+    private SessionFactory sessionFactory;
+
+    public MovieSessionDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<MovieSession> query = session.createQuery(
                     "From MovieSession where movie.id = :movieId"
                             + " and year(showTime) = :year and month(showTime) = :month"
@@ -38,7 +44,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(movieSession);
             transaction.commit();

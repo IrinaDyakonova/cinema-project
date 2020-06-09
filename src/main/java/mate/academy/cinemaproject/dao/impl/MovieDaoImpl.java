@@ -4,23 +4,29 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
 import mate.academy.cinemaproject.dao.MovieDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
-import mate.academy.cinemaproject.lib.Dao;
 import mate.academy.cinemaproject.model.Movie;
-import mate.academy.cinemaproject.util.HibernateUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class MovieDaoImpl implements MovieDao {
     private static final Logger LOGGER = Logger.getLogger(MovieDaoImpl.class);
+
+    private SessionFactory sessionFactory;
+
+    public MovieDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public Movie add(Movie movie) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(movie);
             transaction.commit();
@@ -40,7 +46,7 @@ public class MovieDaoImpl implements MovieDao {
 
     @Override
     public List<Movie> getAll() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             CriteriaQuery<Movie> criteriaQuery = session
                     .getCriteriaBuilder().createQuery(Movie.class);
             criteriaQuery.from(Movie.class);

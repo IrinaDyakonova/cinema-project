@@ -2,8 +2,8 @@ package mate.academy.cinemaproject;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import mate.academy.cinemaproject.config.AppConfig;
 import mate.academy.cinemaproject.exeption.AuthenticationException;
-import mate.academy.cinemaproject.lib.Injector;
 import mate.academy.cinemaproject.model.CinemaHall;
 import mate.academy.cinemaproject.model.Movie;
 import mate.academy.cinemaproject.model.MovieSession;
@@ -17,25 +17,22 @@ import mate.academy.cinemaproject.service.MovieSessionService;
 import mate.academy.cinemaproject.service.OrderService;
 import mate.academy.cinemaproject.service.ShoppingCartService;
 import mate.academy.cinemaproject.service.UserService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
-    private static Injector injector = Injector.getInstance("mate.academy.cinemaproject");
-    private static MovieService movieService
-            = (MovieService) injector.getInstance(MovieService.class);
-    private static MovieSessionService movieSessionService
-            = (MovieSessionService) injector.getInstance(MovieSessionService.class);
-    private static CinemaHallService cinemaHallService
-            = (CinemaHallService) injector.getInstance(CinemaHallService.class);
-    private static UserService userService
-            = (UserService) injector.getInstance(UserService.class);
-    private static AuthenticationService authenticationService
-            = (AuthenticationService) injector.getInstance(AuthenticationService.class);
-    private static ShoppingCartService shoppingCartService
-            = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
-    private static OrderService orderService
-            = (OrderService) injector.getInstance(OrderService.class);
 
     public static void main(String[] args) throws AuthenticationException {
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(AppConfig.class);
+        UserService userService = context.getBean(UserService.class);
+        MovieService movieService = context.getBean(MovieService.class);
+        CinemaHallService cinemaHallService = context.getBean(CinemaHallService.class);
+        MovieSessionService movieSessionService = context.getBean(MovieSessionService.class);
+        AuthenticationService authenticationService = context.getBean(AuthenticationService.class);
+        ShoppingCartService shoppingCartService = context.getBean(ShoppingCartService.class);
+        OrderService orderService = context.getBean(OrderService.class);
+
+
 
         Movie movie1 = new Movie();
         movie1.setTitle("Where'd You Go, Bernadette");
