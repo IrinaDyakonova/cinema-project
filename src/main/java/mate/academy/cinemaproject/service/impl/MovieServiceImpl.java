@@ -2,7 +2,6 @@ package mate.academy.cinemaproject.service.impl;
 
 import java.util.List;
 import mate.academy.cinemaproject.dao.MovieDao;
-
 import mate.academy.cinemaproject.model.Movie;
 import mate.academy.cinemaproject.service.MovieService;
 import org.springframework.stereotype.Service;
