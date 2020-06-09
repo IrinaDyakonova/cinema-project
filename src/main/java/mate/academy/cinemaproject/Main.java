@@ -24,13 +24,6 @@ public class Main {
     public static void main(String[] args) throws AuthenticationException {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(AppConfig.class);
-        UserService userService = context.getBean(UserService.class);
-        MovieService movieService = context.getBean(MovieService.class);
-        CinemaHallService cinemaHallService = context.getBean(CinemaHallService.class);
-        MovieSessionService movieSessionService = context.getBean(MovieSessionService.class);
-        AuthenticationService authenticationService = context.getBean(AuthenticationService.class);
-        ShoppingCartService shoppingCartService = context.getBean(ShoppingCartService.class);
-        OrderService orderService = context.getBean(OrderService.class);
 
         Movie movie1 = new Movie();
         movie1.setTitle("Where'd You Go, Bernadette");
@@ -39,6 +32,7 @@ public class Main {
                 + "with a loving family. Once Bernadette disappears "
                 + "without a trace. Now her family has to find out "
                 + "where and why she went, and return her home.");
+        MovieService movieService = context.getBean(MovieService.class);
         movieService.add(movie1);
 
         Movie movie2 = new Movie();
@@ -62,6 +56,7 @@ public class Main {
 
         movieService.getAll().forEach(System.out::println);
 
+        CinemaHallService cinemaHallService = context.getBean(CinemaHallService.class);
         CinemaHall cinemaHall1 = new CinemaHall();
         cinemaHall1.setCapacity(12);
         cinemaHall1.setDescription("BLACK");
@@ -78,6 +73,7 @@ public class Main {
         movie1Session.setShowTime(LocalDateTime.of(2020, 5, 22, 17, 45));
         movie1Session.setMovie(movie1);
         movie1Session.setCinemaHall(cinemaHall1);
+        MovieSessionService movieSessionService = context.getBean(MovieSessionService.class);
         movieSessionService.add(movie1Session);
 
         MovieSession movie2Session = new MovieSession();
@@ -95,20 +91,25 @@ public class Main {
         movieSessionService.findAvailableSessions(movie3.getId(), today)
                 .forEach(System.out::println);
 
+        UserService userService = context.getBean(UserService.class);
+        AuthenticationService authenticationService = context.getBean(AuthenticationService.class);
         User irinkoPavlinko = authenticationService.register("irinko_pavlinko", "3344410782");
         authenticationService.login("irinko_pavlinko", "3344410782");
         System.out.println(userService.findByEmail("irinko_pavlinko").get());
 
+        ShoppingCartService shoppingCartService = context.getBean(ShoppingCartService.class);
         System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
         shoppingCartService.addSession(movie1Session, irinkoPavlinko);
         ShoppingCart shoppingCart = shoppingCartService.getByUser(irinkoPavlinko);
 
         System.out.println(shoppingCart);
 
+        OrderService orderService = context.getBean(OrderService.class);
         Order order = orderService.completeOrder(shoppingCart.getTickets(), shoppingCart.getUser());
 
         System.out.println(order);
 
         System.out.println(shoppingCartService.getByUser(irinkoPavlinko));
+
     }
 }
