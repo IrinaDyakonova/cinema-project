@@ -2,20 +2,22 @@ package mate.academy.cinemaproject.service.impl;
 
 import mate.academy.cinemaproject.dao.ShoppingCartDao;
 import mate.academy.cinemaproject.dao.TicketDao;
-import mate.academy.cinemaproject.lib.Inject;
-import mate.academy.cinemaproject.lib.Service;
 import mate.academy.cinemaproject.model.MovieSession;
 import mate.academy.cinemaproject.model.ShoppingCart;
 import mate.academy.cinemaproject.model.Ticket;
 import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.ShoppingCartService;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-    @Inject
     private ShoppingCartDao shoppingCartDao;
-    @Inject
     private TicketDao ticketDao;
+
+    public ShoppingCartServiceImpl(ShoppingCartDao shoppingCartDao, TicketDao ticketDao) {
+        this.shoppingCartDao = shoppingCartDao;
+        this.ticketDao = ticketDao;
+    }
 
     @Override
     public void addSession(MovieSession movieSession, User user) {

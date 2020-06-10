@@ -1,21 +1,24 @@
 package mate.academy.cinemaproject.service.impl;
 
 import mate.academy.cinemaproject.exeption.AuthenticationException;
-import mate.academy.cinemaproject.lib.Inject;
-import mate.academy.cinemaproject.lib.Service;
 import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.AuthenticationService;
 import mate.academy.cinemaproject.service.ShoppingCartService;
 import mate.academy.cinemaproject.service.UserService;
 import mate.academy.cinemaproject.util.HashUtil;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    @Inject
-    UserService userService;
+    private UserService userService;
 
-    @Inject
-    ShoppingCartService shoppingCartService;
+    private ShoppingCartService shoppingCartService;
+
+    public AuthenticationServiceImpl(UserService userService,
+                                     ShoppingCartService shoppingCartService) {
+        this.userService = userService;
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @Override
     public User login(String email, String password) throws AuthenticationException {
