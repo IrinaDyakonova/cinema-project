@@ -1,6 +1,7 @@
 package mate.academy.cinemaproject.dao;
 
 import mate.academy.cinemaproject.model.ShoppingCart;
+import mate.academy.cinemaproject.model.Ticket;
 import mate.academy.cinemaproject.model.User;
 
 public interface ShoppingCartDao {
@@ -10,4 +11,7 @@ public interface ShoppingCartDao {
     ShoppingCart getByUser(User user);
 
     void update(ShoppingCart shoppingCart);
+
+    ShoppingCart findById(Long id);
+
 }

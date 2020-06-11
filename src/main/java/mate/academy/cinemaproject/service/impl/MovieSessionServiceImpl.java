@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import mate.academy.cinemaproject.dao.MovieSessionDao;
 import mate.academy.cinemaproject.model.MovieSession;
+import mate.academy.cinemaproject.model.Order;
 import mate.academy.cinemaproject.service.MovieSessionService;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,11 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     @Override
     public MovieSession add(MovieSession session) {
         return movieSessionDao.add(session);
+    }
+
+
+    @Override
+    public MovieSession findById(Long id) {
+        return movieSessionDao.findById(id);
     }
 }

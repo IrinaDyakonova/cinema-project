@@ -3,6 +3,7 @@ package mate.academy.cinemaproject.service.impl;
 import java.util.List;
 import mate.academy.cinemaproject.dao.MovieDao;
 import mate.academy.cinemaproject.model.Movie;
+import mate.academy.cinemaproject.model.MovieSession;
 import mate.academy.cinemaproject.service.MovieService;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,10 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> getAll() {
         return movieDao.getAll();
+    }
+
+    @Override
+    public Movie findById(Long id) {
+        return movieDao.findById(id);
     }
 }

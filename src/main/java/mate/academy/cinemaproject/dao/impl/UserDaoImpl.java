@@ -54,4 +54,16 @@ public class UserDaoImpl implements UserDao {
             throw new DataProcessingException("Can't get available user", e);
         }
     }
+
+    @Override
+    public User findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<User> query = session.createQuery(
+                    "From User where id = :id");
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get available user", e);
+        }
+    }
 }

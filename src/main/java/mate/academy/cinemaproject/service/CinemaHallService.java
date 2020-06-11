@@ -2,9 +2,13 @@ package mate.academy.cinemaproject.service;
 
 import java.util.List;
 import mate.academy.cinemaproject.model.CinemaHall;
+import mate.academy.cinemaproject.model.Movie;
 
 public interface CinemaHallService {
     CinemaHall add(CinemaHall cinemaHall);
 
     List<CinemaHall> getAll();
+
+    CinemaHall findById(Long id);
+
 }

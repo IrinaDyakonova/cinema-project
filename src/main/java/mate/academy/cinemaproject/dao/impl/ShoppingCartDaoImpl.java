@@ -3,6 +3,7 @@ package mate.academy.cinemaproject.dao.impl;
 import mate.academy.cinemaproject.dao.ShoppingCartDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
 import mate.academy.cinemaproject.model.ShoppingCart;
+import mate.academy.cinemaproject.model.Ticket;
 import mate.academy.cinemaproject.model.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -82,6 +83,18 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             }
         }
 
+    }
+
+    @Override
+    public ShoppingCart findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<ShoppingCart> query = session.createQuery(
+                    "From ShoppingCart where id = :id");
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get available shoppingCart", e);
+        }
     }
 
 }

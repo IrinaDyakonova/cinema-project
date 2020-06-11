@@ -4,6 +4,7 @@ import java.util.List;
 import mate.academy.cinemaproject.dao.OrderDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
 import mate.academy.cinemaproject.model.Order;
+import mate.academy.cinemaproject.model.ShoppingCart;
 import mate.academy.cinemaproject.model.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -49,13 +50,25 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getOrderHistory(User user) {
         try (Session session = sessionFactory.openSession()) {
             Query<Order> query = session.createQuery(
-                    "FROM Order order "
-                            + "LEFT JOIN FETCH order.tickets "
-                            + "WHERE order.user.id= :user_id");
+                    "FROM Order o "
+                            + "LEFT JOIN FETCH o.tickets "
+                            + "WHERE o.user.id= :user_id",Order.class);
             query.setParameter("user_id", user.getId());
             return query.list();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get available orders", e);
+        }
+    }
+
+    @Override
+    public Order findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Order> query = session.createQuery(
+                    "From Order where id = :id");
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get available order", e);
         }
     }
 }

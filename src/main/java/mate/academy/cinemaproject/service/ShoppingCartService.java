@@ -13,4 +13,7 @@ public interface ShoppingCartService {
 
     void clear(ShoppingCart shoppingCart);
 
+    ShoppingCart findById(Long id);
+
+
 }

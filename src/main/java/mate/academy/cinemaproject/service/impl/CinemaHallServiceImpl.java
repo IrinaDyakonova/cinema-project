@@ -3,6 +3,7 @@ package mate.academy.cinemaproject.service.impl;
 import java.util.List;
 import mate.academy.cinemaproject.dao.CinemaHallDao;
 import mate.academy.cinemaproject.model.CinemaHall;
+import mate.academy.cinemaproject.model.Movie;
 import mate.academy.cinemaproject.service.CinemaHallService;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,10 @@ public class CinemaHallServiceImpl implements CinemaHallService {
     @Override
     public List<CinemaHall> getAll() {
         return cinemaHallDao.getAll();
+    }
+
+    @Override
+    public CinemaHall findById(Long id) {
+        return cinemaHallDao.findById(id);
     }
 }
