@@ -1,12 +1,9 @@
 package mate.academy.cinemaproject.dto;
 
-import java.time.LocalDateTime;
-
 public class MovieResponseDto {
     private Long id;
     private String title;
     private String description;
-
 
     public MovieResponseDto() {
     }

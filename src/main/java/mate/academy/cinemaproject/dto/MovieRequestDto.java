@@ -1,11 +1,9 @@
 package mate.academy.cinemaproject.dto;
 
-import java.time.LocalDateTime;
-
 public class MovieRequestDto {
+
     private String title;
     private String description;
-
 
     public MovieRequestDto() {
     }

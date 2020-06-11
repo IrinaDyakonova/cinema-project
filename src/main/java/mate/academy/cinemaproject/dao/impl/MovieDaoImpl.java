@@ -5,7 +5,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import mate.academy.cinemaproject.dao.MovieDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
 import mate.academy.cinemaproject.model.Movie;
-import mate.academy.cinemaproject.model.MovieSession;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

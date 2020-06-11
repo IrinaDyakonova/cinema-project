@@ -16,7 +16,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private HashUtil hashUtil;
 
-    public AuthenticationServiceImpl(UserService userService, ShoppingCartService shoppingCartService, HashUtil hashUtil) {
+    public AuthenticationServiceImpl(UserService userService,
+                                     ShoppingCartService shoppingCartService,
+                                     HashUtil hashUtil) {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
         this.hashUtil = hashUtil;

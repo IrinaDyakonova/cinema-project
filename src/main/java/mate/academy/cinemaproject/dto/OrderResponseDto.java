@@ -4,16 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderResponseDto {
+
     private Long id;
     private List<Long> ticketId;
     private Long userId;
     private LocalDateTime orderDate;
 
-
     public OrderResponseDto() {
     }
-
-
 
     public Long getId() {
         return id;

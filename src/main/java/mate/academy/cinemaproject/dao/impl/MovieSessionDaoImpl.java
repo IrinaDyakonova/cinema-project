@@ -5,7 +5,6 @@ import java.util.List;
 import mate.academy.cinemaproject.dao.MovieSessionDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
 import mate.academy.cinemaproject.model.MovieSession;
-import mate.academy.cinemaproject.model.Order;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

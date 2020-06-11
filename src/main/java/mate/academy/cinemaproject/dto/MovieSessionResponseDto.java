@@ -1,14 +1,13 @@
 package mate.academy.cinemaproject.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class MovieSessionResponseDto {
+
     private Long id;
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
-
 
     public MovieSessionResponseDto() {
     }

@@ -3,7 +3,6 @@ package mate.academy.cinemaproject.service.impl;
 import java.util.List;
 import mate.academy.cinemaproject.dao.CinemaHallDao;
 import mate.academy.cinemaproject.model.CinemaHall;
-import mate.academy.cinemaproject.model.Movie;
 import mate.academy.cinemaproject.service.CinemaHallService;
 import org.springframework.stereotype.Service;
 

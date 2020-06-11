@@ -3,7 +3,6 @@ package mate.academy.cinemaproject.dao.impl;
 import mate.academy.cinemaproject.dao.TicketDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
 import mate.academy.cinemaproject.model.Ticket;
-import mate.academy.cinemaproject.model.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

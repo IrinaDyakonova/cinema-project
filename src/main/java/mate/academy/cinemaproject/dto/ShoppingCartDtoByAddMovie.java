@@ -2,8 +2,8 @@ package mate.academy.cinemaproject.dto;
 
 public class ShoppingCartDtoByAddMovie {
 
-   private Long movieSessionId;
-   private Long userId;
+    private Long movieSessionId;
+    private Long userId;
 
     public ShoppingCartDtoByAddMovie() {
     }

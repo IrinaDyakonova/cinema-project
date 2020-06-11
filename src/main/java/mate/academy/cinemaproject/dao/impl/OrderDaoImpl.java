@@ -4,7 +4,6 @@ import java.util.List;
 import mate.academy.cinemaproject.dao.OrderDao;
 import mate.academy.cinemaproject.exeption.DataProcessingException;
 import mate.academy.cinemaproject.model.Order;
-import mate.academy.cinemaproject.model.ShoppingCart;
 import mate.academy.cinemaproject.model.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;

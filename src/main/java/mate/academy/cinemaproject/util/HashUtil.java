@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class HashUtil {
 
-    private static final String SHA_512 = "SHA-512";
-
     public byte[] getSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
@@ -20,7 +18,7 @@ public class HashUtil {
     public String hashPassword(String password, byte[] salt) {
         StringBuilder hashedPassword = new StringBuilder();
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance(SHA_512);
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(salt);
             byte[] digest = messageDigest.digest(password.getBytes());
             for (byte b: digest) {

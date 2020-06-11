@@ -10,7 +10,6 @@ public class ShoppingCartResponseDto {
     public ShoppingCartResponseDto() {
     }
 
-
     public Long getId() {
         return id;
     }

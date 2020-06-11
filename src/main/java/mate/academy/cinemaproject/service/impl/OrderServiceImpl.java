@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import mate.academy.cinemaproject.dao.OrderDao;
 import mate.academy.cinemaproject.model.Order;
-import mate.academy.cinemaproject.model.ShoppingCart;
 import mate.academy.cinemaproject.model.Ticket;
 import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.OrderService;
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    private OrderDao orderDao;
 
+    private OrderDao orderDao;
     private ShoppingCartService shoppingCartService;
 
     public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService) {
@@ -36,7 +35,6 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrderHistory(User user) {
         return orderDao.getOrderHistory(user);
     }
-
 
     @Override
     public Order findById(Long id) {

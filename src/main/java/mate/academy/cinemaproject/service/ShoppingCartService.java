@@ -5,6 +5,7 @@ import mate.academy.cinemaproject.model.ShoppingCart;
 import mate.academy.cinemaproject.model.User;
 
 public interface ShoppingCartService {
+
     void addSession(MovieSession movieSession, User user);
 
     ShoppingCart getByUser(User user);
@@ -14,6 +15,4 @@ public interface ShoppingCartService {
     void clear(ShoppingCart shoppingCart);
 
     ShoppingCart findById(Long id);
-
-
 }

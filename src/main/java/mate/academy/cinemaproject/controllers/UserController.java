@@ -1,7 +1,7 @@
 package mate.academy.cinemaproject.controllers;
 
 import mate.academy.cinemaproject.dto.UserResponseDto;
-import mate.academy.cinemaproject.model.User;
+import mate.academy.cinemaproject.mapper.UserMapper;
 import mate.academy.cinemaproject.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,25 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final UserMapper userMapper;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
-
-    /*
-    Get user by email - GET: /users/byemail?email
-
-     */
-    @GetMapping("/by-email{email}")
+    @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
-        return prepare(userService.findByEmail(email).get());
-    }
-
-    private UserResponseDto prepare(User user) {
-        UserResponseDto userResponseDto = new UserResponseDto();
-        userResponseDto.setId(user.getId());
-        userResponseDto.setEmail(user.getEmail());
-        return userResponseDto;
+        return userMapper.toDto(userService.findByEmail(email).get());
     }
 }
