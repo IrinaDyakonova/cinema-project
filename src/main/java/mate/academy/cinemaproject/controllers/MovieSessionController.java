@@ -35,7 +35,7 @@ public class MovieSessionController {
 
     }
 
-    @GetMapping("/available{movieId, date}")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> allAvailableMovieSessions(
             @RequestParam Long movieId,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
