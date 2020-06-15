@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    private OrderDao orderDao;
 
+    private OrderDao orderDao;
     private ShoppingCartService shoppingCartService;
 
     public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService) {
@@ -34,5 +34,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrderHistory(User user) {
         return orderDao.getOrderHistory(user);
+    }
+
+    @Override
+    public Order findById(Long id) {
+        return orderDao.findById(id);
     }
 }

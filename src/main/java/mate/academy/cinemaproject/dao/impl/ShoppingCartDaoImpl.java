@@ -84,4 +84,16 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     }
 
+    @Override
+    public ShoppingCart findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<ShoppingCart> query = session.createQuery(
+                    "From ShoppingCart where id = :id");
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get available shoppingCart", e);
+        }
+    }
+
 }

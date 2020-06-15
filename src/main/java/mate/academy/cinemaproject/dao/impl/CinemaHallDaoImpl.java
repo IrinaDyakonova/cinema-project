@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -53,6 +54,18 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Error retrieving all CinemaHall ", e);
+        }
+    }
+
+    @Override
+    public CinemaHall findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<CinemaHall> query = session.createQuery(
+                    "From CinemaHall where id = :id");
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get available cinemaHall", e);
         }
     }
 

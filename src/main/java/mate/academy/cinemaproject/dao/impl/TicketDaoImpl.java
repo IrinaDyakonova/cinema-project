@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -39,6 +40,18 @@ public class TicketDaoImpl implements TicketDao {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public Ticket findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Ticket> query = session.createQuery(
+                    "From Ticket where id = :id");
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get available ticket", e);
         }
     }
 }

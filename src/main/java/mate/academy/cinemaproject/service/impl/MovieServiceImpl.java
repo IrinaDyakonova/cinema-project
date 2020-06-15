@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MovieServiceImpl implements MovieService {
+
     private MovieDao movieDao;
 
     public MovieServiceImpl(MovieDao movieDao) {
@@ -22,5 +23,10 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> getAll() {
         return movieDao.getAll();
+    }
+
+    @Override
+    public Movie findById(Long id) {
+        return movieDao.findById(id);
     }
 }
