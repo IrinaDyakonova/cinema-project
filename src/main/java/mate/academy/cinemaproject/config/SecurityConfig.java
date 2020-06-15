@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(getEncoder())
                 .withUser("dyakonova.irina.v@gmail.com")
                 .password(getEncoder().encode("1234"))
-                .roles("ROLE_USER");
+                .roles("USER");
     }
 
     protected void configure(HttpSecurity http) throws Exception {
