@@ -1,10 +1,17 @@
 package mate.academy.cinemaproject.dto;
 
 import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
 
 public class MovieSessionRequestDto {
+
+    @NotNull(message = "Movie Id cannot be empty")
     private Long movieId;
+
+    @NotNull(message = "CinemaHall Id cannot be empty")
     private Long cinemaHallId;
+
+    @NotNull(message = "Show Time cannot be empty")
     private LocalDateTime showTime;
 
     public MovieSessionRequestDto() {

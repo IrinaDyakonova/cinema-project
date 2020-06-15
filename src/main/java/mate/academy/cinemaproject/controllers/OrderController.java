@@ -2,6 +2,7 @@ package mate.academy.cinemaproject.controllers;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import mate.academy.cinemaproject.dto.OrderRequestDto;
 import mate.academy.cinemaproject.dto.OrderResponseDto;
 import mate.academy.cinemaproject.mapper.OrderMapper;
@@ -37,7 +38,7 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public String completeOrder(@RequestBody OrderRequestDto orderRequestDto) {
+    public String completeOrder(@RequestBody @Valid OrderRequestDto orderRequestDto) {
         User user = userService.findById(orderRequestDto.getUserId());
         ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
         orderService.completeOrder(shoppingCart.getTickets(),user);

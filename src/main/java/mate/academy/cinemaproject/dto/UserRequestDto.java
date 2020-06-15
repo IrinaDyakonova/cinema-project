@@ -1,8 +1,23 @@
 package mate.academy.cinemaproject.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import mate.academy.cinemaproject.annotation.EmailConstraint;
+import mate.academy.cinemaproject.annotation.PasswordsValueMatch;
+
+@PasswordsValueMatch
 public class UserRequestDto {
+
+    @EmailConstraint
     private String email;
+
+    @NotNull(message = "Password cannot be empty")
+    @Size(min = 8, message = "Password must be at least 8 characters")
     private String password;
+
+    @NotNull(message = "Repeat password cannot be empty")
+    @Size(min = 8, message = "Repeat password must be at least 8 characters")
+    private String repeatPassword;
 
     public UserRequestDto() {
     }
@@ -26,5 +41,13 @@ public class UserRequestDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 }

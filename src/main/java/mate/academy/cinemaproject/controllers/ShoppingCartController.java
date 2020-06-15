@@ -1,5 +1,6 @@
 package mate.academy.cinemaproject.controllers;
 
+import javax.validation.Valid;
 import mate.academy.cinemaproject.dto.ShoppingCartDtoByAddMovie;
 import mate.academy.cinemaproject.dto.ShoppingCartResponseDto;
 import mate.academy.cinemaproject.mapper.ShoppingCartMapper;
@@ -36,7 +37,7 @@ public class ShoppingCartController {
 
     @PostMapping("/add-movie-session")
     public String addMovieSessionToUser(
-            @RequestBody ShoppingCartDtoByAddMovie shoppingCartDtoByAddMovie) {
+            @RequestBody @Valid ShoppingCartDtoByAddMovie shoppingCartDtoByAddMovie) {
         MovieSession movieSession = movieSessionService
                 .findById(shoppingCartDtoByAddMovie.getMovieSessionId());
         User user = userService.findById(shoppingCartDtoByAddMovie.getUserId());
