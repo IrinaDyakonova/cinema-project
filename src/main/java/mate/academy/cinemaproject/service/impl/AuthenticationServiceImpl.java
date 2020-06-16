@@ -35,7 +35,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User userFromDB = userService.findByEmail(email).orElseThrow(() ->
                 new AuthenticationException("Incorrect user name or password"));
 
-        if (passwordEncoder.encode(userFromDB.getPassword()).equals(userFromDB.getPassword())) {
+        if (passwordEncoder.encode(userFromDB.getPassword()).equals(password)) {
             return userFromDB;
         }
         throw new AuthenticationException("Incorrect user name or password");
