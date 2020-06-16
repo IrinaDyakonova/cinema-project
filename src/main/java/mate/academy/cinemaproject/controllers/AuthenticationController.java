@@ -1,5 +1,6 @@
 package mate.academy.cinemaproject.controllers;
 
+import javax.validation.Valid;
 import mate.academy.cinemaproject.dto.UserRequestDto;
 import mate.academy.cinemaproject.dto.UserResponseDto;
 import mate.academy.cinemaproject.mapper.UserMapper;
@@ -21,7 +22,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
+    public UserResponseDto register(@RequestBody @Valid UserRequestDto userRequestDto) {
         return userMapper
                 .toDto(authenticationService
                         .register(userRequestDto.getEmail(), userRequestDto.getPassword()));

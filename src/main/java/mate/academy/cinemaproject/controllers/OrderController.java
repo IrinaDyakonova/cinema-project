@@ -2,6 +2,7 @@ package mate.academy.cinemaproject.controllers;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import mate.academy.cinemaproject.dto.OrderRequestDto;
 import mate.academy.cinemaproject.dto.OrderResponseDto;
 import mate.academy.cinemaproject.mapper.OrderMapper;
@@ -10,16 +11,17 @@ import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.OrderService;
 import mate.academy.cinemaproject.service.ShoppingCartService;
 import mate.academy.cinemaproject.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
+
     private final UserService userService;
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
@@ -37,7 +39,7 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public String completeOrder(@RequestBody OrderRequestDto orderRequestDto) {
+    public String completeOrder(@RequestBody @Valid OrderRequestDto orderRequestDto) {
         User user = userService.findById(orderRequestDto.getUserId());
         ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
         orderService.completeOrder(shoppingCart.getTickets(),user);
@@ -46,9 +48,9 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<OrderResponseDto> getByUserId(@RequestParam Long userId) {
+    public List<OrderResponseDto> getByUserId(Authentication authentication) {
         return orderService
-                .getOrderHistory(userService.findById(userId))
+                .getOrderHistory(userService.findByEmail(authentication.getName()).get())
                 .stream()
                 .map(orderMapper::toDto)
                 .collect(Collectors.toList());
