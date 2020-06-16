@@ -9,11 +9,11 @@ import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.MovieSessionService;
 import mate.academy.cinemaproject.service.ShoppingCartService;
 import mate.academy.cinemaproject.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -46,10 +46,10 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto getByUserId(@RequestParam Long userId) {
+    public ShoppingCartResponseDto getByUserId(Authentication authentication) {
         return shoppingCartMapper
                 .toDto(shoppingCartService
                         .getByUser(userService
-                                .findById(userId)));
+                                .findByEmail(authentication.getName()).get()));
     }
 }
