@@ -19,7 +19,6 @@
         </maven.checkstyle.plugin.configLocation>
         <spring.version>5.2.2.RELEASE</spring.version>
         <spring.security.version>5.3.3.RELEASE</spring.security.version>
-
     </properties>
 
     <dependencies>
