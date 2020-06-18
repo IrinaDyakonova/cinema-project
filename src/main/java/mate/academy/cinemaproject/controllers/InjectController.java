@@ -1,18 +1,16 @@
 package mate.academy.cinemaproject.controllers;
 
 import java.util.Set;
+import javax.annotation.PostConstruct;
 import mate.academy.cinemaproject.model.Role;
 import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.RoleService;
 import mate.academy.cinemaproject.service.ShoppingCartService;
 import mate.academy.cinemaproject.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
-@RestController
-@RequestMapping("/inject")
+@Component
 public class InjectController {
 
     private final RoleService roleService;
@@ -31,8 +29,8 @@ public class InjectController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping
-    public String sayHello() {
+    @PostConstruct
+    public String inject() {
 
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
