@@ -1,7 +1,6 @@
 package mate.academy.cinemaproject.service.impl;
 
 import java.util.Set;
-import mate.academy.cinemaproject.exeption.AuthenticationException;
 import mate.academy.cinemaproject.model.Role;
 import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.AuthenticationService;
@@ -28,17 +27,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.shoppingCartService = shoppingCartService;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    @Override
-    public User login(String email, String password) throws AuthenticationException {
-        User userFromDB = userService.findByEmail(email).orElseThrow(() ->
-                new AuthenticationException("Incorrect user name or password"));
-
-        if (passwordEncoder.encode(userFromDB.getPassword()).equals(password)) {
-            return userFromDB;
-        }
-        throw new AuthenticationException("Incorrect user name or password");
     }
 
     @Override

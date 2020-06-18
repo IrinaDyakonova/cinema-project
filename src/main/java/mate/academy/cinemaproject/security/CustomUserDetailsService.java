@@ -1,6 +1,5 @@
 package mate.academy.cinemaproject.security;
 
-import mate.academy.cinemaproject.model.Role;
 import mate.academy.cinemaproject.model.User;
 import mate.academy.cinemaproject.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;

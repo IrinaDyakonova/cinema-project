@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +20,7 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
+    @ManyToMany
     private Set<Role> roles = new HashSet<>();
 
     public User() {

@@ -35,8 +35,8 @@ public class Role {
         return roleName;
     }
 
-    public static Role of(String roleName) {
-        return new Role(RoleName.valueOf(roleName));
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
     }
 
     public enum RoleName {
